@@ -478,6 +478,22 @@ nav.scrolled .nav-cta { background: var(--red) !important; color: #fff !importan
 }
 .reel-play-btn svg { margin-left: 4px; flex-shrink: 0; }
 .reel-card.playing .reel-play-btn svg path { d: path("M6 19h4V5H6v14zm8-14v14h4V5h-4z"); }
+.reel-sound-btn {
+  position: absolute; top: 14px; right: 14px;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  border: 1.5px solid rgba(255,255,255,.25);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10;
+  transition: background .25s, transform .3s cubic-bezier(.34,1.56,.64,1), border-color .25s;
+  padding: 0;
+}
+.reel-sound-btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+  transform: scale(1.15);
+}
 .reel-label {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 40px 20px 20px;
@@ -903,30 +919,42 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.05); p
   </div>
   <div class="reels-grid">
     <div class="reel-card reveal">
-      <video src="1.mp4" loop playsinline preload="metadata" title="Likable Agency Reel 1"></video>
+      <video src="1.mp4" loop playsinline preload="metadata" muted title="Likable Agency Reel 1"></video>
       <div class="reel-overlay">
         <button class="reel-play-btn" aria-label="Play reel">
           <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
         </button>
       </div>
+      <button class="reel-sound-btn" aria-label="Unmute">
+        <svg class="icon-muted" viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25A6.97 6.97 0 0 1 14 18.98v2.06A9.013 9.013 0 0 0 17.54 19l1.73 1.73L20.54 19 5.27 3.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+        <svg class="icon-unmuted" viewBox="0 0 24 24" fill="white" width="16" height="16" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      </button>
       <div class="reel-label"><span class="reel-label-text">Live Campaign</span></div>
     </div>
     <div class="reel-card reveal d2">
-      <video src="2.mp4" loop playsinline preload="metadata" title="Likable Agency Reel 2"></video>
+      <video src="2.mp4" loop playsinline preload="metadata" muted title="Likable Agency Reel 2"></video>
       <div class="reel-overlay">
         <button class="reel-play-btn" aria-label="Play reel">
           <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
         </button>
       </div>
+      <button class="reel-sound-btn" aria-label="Unmute">
+        <svg class="icon-muted" viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25A6.97 6.97 0 0 1 14 18.98v2.06A9.013 9.013 0 0 0 17.54 19l1.73 1.73L20.54 19 5.27 3.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+        <svg class="icon-unmuted" viewBox="0 0 24 24" fill="white" width="16" height="16" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      </button>
       <div class="reel-label"><span class="reel-label-text">Creator Collab</span></div>
     </div>
     <div class="reel-card reveal d3">
-      <video src="3.mp4" loop playsinline preload="metadata" title="Likable Agency Reel 3"></video>
+      <video src="3.mp4" loop playsinline preload="metadata" muted title="Likable Agency Reel 3"></video>
       <div class="reel-overlay">
         <button class="reel-play-btn" aria-label="Play reel">
           <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
         </button>
       </div>
+      <button class="reel-sound-btn" aria-label="Unmute">
+        <svg class="icon-muted" viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25A6.97 6.97 0 0 1 14 18.98v2.06A9.013 9.013 0 0 0 17.54 19l1.73 1.73L20.54 19 5.27 3.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+        <svg class="icon-unmuted" viewBox="0 0 24 24" fill="white" width="16" height="16" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      </button>
       <div class="reel-label"><span class="reel-label-text">Brand Story</span></div>
     </div>
   </div>
@@ -1111,22 +1139,71 @@ new IntersectionObserver(entries=>{
 /* ── Video Reels ── */
 document.querySelectorAll('.reel-card').forEach(card => {
   const video = card.querySelector('video');
-  const btn = card.querySelector('.reel-play-btn');
+  const playBtn = card.querySelector('.reel-play-btn');
+  const soundBtn = card.querySelector('.reel-sound-btn');
+  const iconMuted = soundBtn.querySelector('.icon-muted');
+  const iconUnmuted = soundBtn.querySelector('.icon-unmuted');
+
   const playIcon = `<svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>`;
   const pauseIcon = `<svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
 
-  card.addEventListener('click', () => {
+  // Play/pause on card click (but not on sound button)
+  card.addEventListener('click', e => {
+    if (e.target.closest('.reel-sound-btn')) return;
     if (video.paused) {
       document.querySelectorAll('.reel-card video').forEach(v => {
-        if (v !== video) { v.pause(); v.closest('.reel-card').classList.remove('playing'); v.closest('.reel-card').querySelector('.reel-play-btn').innerHTML = playIcon; }
+        if (v !== video) {
+          v.pause();
+          const c = v.closest('.reel-card');
+          c.classList.remove('playing');
+          c.querySelector('.reel-play-btn').innerHTML = playIcon;
+        }
       });
       video.play();
       card.classList.add('playing');
-      btn.innerHTML = pauseIcon;
+      playBtn.innerHTML = pauseIcon;
     } else {
       video.pause();
       card.classList.remove('playing');
-      btn.innerHTML = playIcon;
+      playBtn.innerHTML = playIcon;
+    }
+  });
+
+  // Sound toggle
+  soundBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    video.muted = !video.muted;
+    if (video.muted) {
+      iconMuted.style.display = 'block';
+      iconUnmuted.style.display = 'none';
+      soundBtn.setAttribute('aria-label', 'Unmute');
+    } else {
+      iconMuted.style.display = 'none';
+      iconUnmuted.style.display = 'block';
+      soundBtn.setAttribute('aria-label', 'Mute');
+      // If not playing yet, start playing when unmuted
+      if (video.paused) {
+        document.querySelectorAll('.reel-card video').forEach(v => {
+          if (v !== video) {
+            v.pause();
+            const c = v.closest('.reel-card');
+            c.classList.remove('playing');
+            c.querySelector('.reel-play-btn').innerHTML = playIcon;
+          }
+        });
+        video.play();
+        card.classList.add('playing');
+        playBtn.innerHTML = pauseIcon;
+      }
+      // Mute all other videos
+      document.querySelectorAll('.reel-card video').forEach(v => {
+        if (v !== video) {
+          v.muted = true;
+          const c = v.closest('.reel-card');
+          c.querySelector('.icon-muted').style.display = 'block';
+          c.querySelector('.icon-unmuted').style.display = 'none';
+        }
+      });
     }
   });
 });
