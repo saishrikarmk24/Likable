@@ -434,16 +434,50 @@ nav.scrolled .nav-cta { background: var(--red) !important; color: #fff !importan
   transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
   aspect-ratio: 9/16;
   max-height: 580px;
+  cursor: pointer;
 }
 .reel-card:hover {
   transform: translateY(-8px) scale(1.01);
   box-shadow: 0 24px 60px rgba(0,0,0,.5);
 }
-.reel-card iframe {
+.reel-card video {
   width: 100%; height: 100%;
-  border: none; display: block;
+  object-fit: cover; display: block;
+  border-radius: 20px;
+  transition: opacity .3s;
+}
+.reel-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.25);
+  transition: background .3s, opacity .3s;
   border-radius: 20px;
 }
+.reel-card.playing .reel-overlay {
+  background: transparent;
+  opacity: 0;
+}
+.reel-card.playing:hover .reel-overlay {
+  opacity: 1;
+  background: rgba(0,0,0,.15);
+}
+.reel-play-btn {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(255,255,255,.15);
+  border: 2px solid rgba(255,255,255,.5);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .25s, transform .3s cubic-bezier(.34,1.56,.64,1), border-color .25s;
+  padding: 0;
+}
+.reel-play-btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+  transform: scale(1.15);
+}
+.reel-play-btn svg { margin-left: 4px; flex-shrink: 0; }
+.reel-card.playing .reel-play-btn svg path { d: path("M6 19h4V5H6v14zm8-14v14h4V5h-4z"); }
 .reel-label {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 40px 20px 20px;
@@ -869,39 +903,30 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.05); p
   </div>
   <div class="reels-grid">
     <div class="reel-card reveal">
-      <iframe
-        src="https://www.instagram.com/reel/DVN0JxiE13O/embed/?cr=1&v=14&wp=320&rd=https%3A%2F%2Flikable.agency&rp=%2F#%7B%22ci%22%3A0%2C%22os%22%3A0%2C%22ls%22%3A0%2C%22le%22%3A0%7D"
-        allowtransparency="true"
-        allowfullscreen="true"
-        allow="encrypted-media"
-        loading="lazy"
-        title="Likable Agency Instagram Reel 1"
-        scrolling="no"
-      ></iframe>
+      <video src="1.mp4" loop playsinline preload="metadata" title="Likable Agency Reel 1"></video>
+      <div class="reel-overlay">
+        <button class="reel-play-btn" aria-label="Play reel">
+          <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
       <div class="reel-label"><span class="reel-label-text">Live Campaign</span></div>
     </div>
     <div class="reel-card reveal d2">
-      <iframe
-        src="https://www.instagram.com/reel/DQor4y5E0P3/embed/?cr=1&v=14&wp=320&rd=https%3A%2F%2Flikable.agency&rp=%2F#%7B%22ci%22%3A0%2C%22os%22%3A0%2C%22ls%22%3A0%2C%22le%22%3A0%7D"
-        allowtransparency="true"
-        allowfullscreen="true"
-        allow="encrypted-media"
-        loading="lazy"
-        title="Likable Agency Instagram Reel 2"
-        scrolling="no"
-      ></iframe>
+      <video src="2.mp4" loop playsinline preload="metadata" title="Likable Agency Reel 2"></video>
+      <div class="reel-overlay">
+        <button class="reel-play-btn" aria-label="Play reel">
+          <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
       <div class="reel-label"><span class="reel-label-text">Creator Collab</span></div>
     </div>
     <div class="reel-card reveal d3">
-      <iframe
-        src="https://www.instagram.com/reel/DVgYCfzEyJb/embed/?cr=1&v=14&wp=320&rd=https%3A%2F%2Flikable.agency&rp=%2F#%7B%22ci%22%3A0%2C%22os%22%3A0%2C%22ls%22%3A0%2C%22le%22%3A0%7D"
-        allowtransparency="true"
-        allowfullscreen="true"
-        allow="encrypted-media"
-        loading="lazy"
-        title="Likable Agency Instagram Reel 3"
-        scrolling="no"
-      ></iframe>
+      <video src="3.mp4" loop playsinline preload="metadata" title="Likable Agency Reel 3"></video>
+      <div class="reel-overlay">
+        <button class="reel-play-btn" aria-label="Play reel">
+          <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
       <div class="reel-label"><span class="reel-label-text">Brand Story</span></div>
     </div>
   </div>
@@ -1082,6 +1107,29 @@ new IntersectionObserver(entries=>{
     }
   });
 },{threshold:.3}).observe(document.querySelector('.about-stat-grid'));
+
+/* ── Video Reels ── */
+document.querySelectorAll('.reel-card').forEach(card => {
+  const video = card.querySelector('video');
+  const btn = card.querySelector('.reel-play-btn');
+  const playIcon = `<svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>`;
+  const pauseIcon = `<svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+
+  card.addEventListener('click', () => {
+    if (video.paused) {
+      document.querySelectorAll('.reel-card video').forEach(v => {
+        if (v !== video) { v.pause(); v.closest('.reel-card').classList.remove('playing'); v.closest('.reel-card').querySelector('.reel-play-btn').innerHTML = playIcon; }
+      });
+      video.play();
+      card.classList.add('playing');
+      btn.innerHTML = pauseIcon;
+    } else {
+      video.pause();
+      card.classList.remove('playing');
+      btn.innerHTML = playIcon;
+    }
+  });
+});
 
 /* ── Smooth scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
