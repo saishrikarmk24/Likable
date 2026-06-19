@@ -1,0 +1,163 @@
+/* ============================================
+   TOKENS & BASE — Black cinematic agency
+   ============================================ */
+
+:root {
+  --black: #000000;
+  --black-soft: #0a0a0a;
+  --black-card: #111111;
+  --white: #ffffff;
+  --white-dim: rgba(255, 255, 255, 0.65);
+  --white-muted: rgba(255, 255, 255, 0.35);
+  --white-faint: rgba(255, 255, 255, 0.08);
+  --glow: rgba(255, 255, 255, 0.06);
+  --glow-strong: rgba(255, 255, 255, 0.12);
+  --accent: #ffffff;
+
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --nav-h: 72px;
+  --wrap: 1320px;
+  --gap: clamp(1rem, 3vw, 2rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  background: var(--black);
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--white);
+  background: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.loading { overflow: hidden; }
+body.is-desktop { cursor: none; }
+body.is-desktop a, body.is-desktop button { cursor: none; }
+
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: none; background: none; color: inherit; cursor: pointer; }
+ul { list-style: none; }
+
+.skip-link {
+  position: fixed; top: -100px; left: 1rem; z-index: 100000;
+  padding: 0.5rem 1rem; background: var(--white); color: var(--black);
+  border-radius: 4px; font-size: 0.875rem;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Film grain overlay */
+.grain {
+  position: fixed; inset: 0; z-index: 9990; pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+/* Typography */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.display--lg {
+  font-size: clamp(3rem, 8vw, 6rem);
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white-muted);
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  transition: transform 0.4s var(--ease), background 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.btn--fill {
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn--fill:hover {
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--white-faint);
+  backdrop-filter: blur(12px);
+}
+
+.btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.btn--wide { width: 100%; }
+
+/* Reveal initial state */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(8px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (max-width: 768px) {
+  body.is-desktop { cursor: auto; }
+  body.is-desktop a, body.is-desktop button { cursor: pointer; }
+  .cursor { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; filter: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

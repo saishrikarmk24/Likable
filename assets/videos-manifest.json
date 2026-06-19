@@ -1,0 +1,44 @@
+{
+  "generated": "2026-06-19T11:18:44.646Z",
+  "ghost": [
+    {
+      "src": "assets/videos/ghost/ghost1.mp4",
+      "filename": "ghost1.mp4",
+      "title": "ghost1"
+    },
+    {
+      "src": "assets/videos/ghost/ghost2.mp4",
+      "filename": "ghost2.mp4",
+      "title": "ghost2"
+    },
+    {
+      "src": "assets/videos/ghost/ghost3.mp4",
+      "filename": "ghost3.mp4",
+      "title": "ghost3"
+    }
+  ],
+  "public": [
+    {
+      "src": "assets/videos/public/edit1.mp4",
+      "filename": "edit1.mp4",
+      "title": "edit1"
+    },
+    {
+      "src": "assets/videos/public/edit2.mp4",
+      "filename": "edit2.mp4",
+      "title": "edit2"
+    },
+    {
+      "src": "assets/videos/public/edit3.mp4",
+      "filename": "edit3.mp4",
+      "title": "edit3"
+    }
+  ],
+  "longform": [
+    {
+      "src": "assets/videos/longform/longform1.mp4",
+      "filename": "longform1.mp4",
+      "title": "longform1"
+    }
+  ]
+}

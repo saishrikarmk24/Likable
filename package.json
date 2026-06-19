@@ -1,0 +1,13 @@
+{
+  "name": "sai-shrikar-portfolio",
+  "version": "1.0.0",
+  "description": "Premium portfolio website for Sai Shrikar M K — Video Editor & Ghost Editor",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx live-server --port=3000 --no-browser",
+    "generate-manifest": "node scripts/generate-manifest.js"
+  },
+  "keywords": ["portfolio", "video-editor", "ghost-editor"],
+  "author": "Sai Shrikar M K",
+  "license": "MIT"
+}
